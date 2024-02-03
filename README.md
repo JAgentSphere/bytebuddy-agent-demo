@@ -31,8 +31,6 @@ AgentBuilder agentBuilder = new AgentBuilder.Default()
         .with(new DumpClassListener()); // 字节码修改成功把类信息给报错到 weaving/classes 目录下
 ```
 
-提供用例
-
 ## 编译
 
 在项目目录下执行如下命令，会在 test 文件夹中生成 agent.jar 和 demo.jar
