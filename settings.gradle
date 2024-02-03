@@ -1,0 +1,2 @@
+rootProject.name = 'agent-demo'
+include "demo"

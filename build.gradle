@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'com.jas.agent'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.bytebuddy:byte-buddy:1.14.11'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+jar {
+    archiveBaseName = 'agent'
+
+    manifest {
+        attributes 'Premain-Class': 'com.jas.agent.Main'
+        attributes 'Agent-Class': 'com.jas.agent.Main'
+        attributes 'Can-Redefine-Classes': true
+        attributes 'Can-Retransform-Classes': true
+        attributes 'Can-Set-Native-Method-Prefix': true
+    }
+}
+
+shadowJar {
+    archiveBaseName = "agent"
+    archiveClassifier = null
+
+    doLast {
+        copy {
+            from 'build/libs/agent.jar'
+            into 'test'
+        }
+
+        copy {
+            from 'demo/build/libs/demo.jar'
+            into 'test'
+        }
+    }
+}
+
+jar.finalizedBy shadowJar
+
+test {
+    useJUnitPlatform()
+}
