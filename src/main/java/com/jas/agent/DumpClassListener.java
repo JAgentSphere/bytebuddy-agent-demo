@@ -27,6 +27,7 @@ public class DumpClassListener implements AgentBuilder.Listener {
             if (Files.notExists(path)) {
                 Files.createDirectories(path);
             }
+            System.out.println("dumpFolder is " + path.toFile().getAbsolutePath());
             dynamicType.saveIn(path.toFile());
         } catch (Exception e) {
             // ignore

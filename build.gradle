@@ -16,7 +16,7 @@ dependencies {
 }
 
 jar {
-    archiveBaseName = 'agent'
+    archiveBaseName = 'rainbow-brackets-cracked'
 
     manifest {
         attributes 'Premain-Class': 'com.jas.agent.Main'
@@ -28,17 +28,12 @@ jar {
 }
 
 shadowJar {
-    archiveBaseName = "agent"
     archiveClassifier = null
+    archiveBaseName = 'rainbow-brackets-cracked'
 
     doLast {
         copy {
-            from 'build/libs/agent.jar'
-            into 'test'
-        }
-
-        copy {
-            from 'demo/build/libs/demo.jar'
+            from 'build/libs/rainbow-brackets-cracked.jar'
             into 'test'
         }
     }
